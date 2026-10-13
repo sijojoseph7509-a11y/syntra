@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntra — Staff</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #15100c; --card: #1f1813; --line: rgba(246,238,227,.12); --ink: #f6eee3; --soft: rgba(246,238,227,.62); --ok: #7fae78; --warn: #d9a441; --bad: #d4695c;
+            --serif: 'Instrument Serif', Georgia, serif; --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+    main { max-width: 1080px; margin: 0 auto; padding: 36px 28px 60px; }
+    header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 26px; }
+    h1 { margin: 0; font: 400 44px/1 var(--serif); }
+    .kicker { font: 700 11px/1 var(--sans); letter-spacing: .3em; color: var(--soft); text-transform: uppercase; }
+    h2 { margin: 0 0 14px; font: 700 11px/1 var(--sans); letter-spacing: .24em; color: var(--soft); text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 18px 16px; }
+    .stat b { display: block; font: 400 24px/1.15 var(--serif); margin-top: 6px; word-break: break-word; }
+    .stat small { color: var(--soft); font-size: 12.5px; }
+    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--soft); margin-right: 8px; vertical-align: 1px; }
+    .ok .dot { background: var(--ok); box-shadow: 0 0 0 3px rgba(127,174,120,.2); } .warn .dot { background: var(--warn); } .bad .dot { background: var(--bad); }
+    section { margin-top: 26px; }
+    .two { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; }
+    .link { font: 600 17px/1.3 ui-monospace, Menlo, monospace; word-break: break-all; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+    button, select, input { font: 600 14px var(--sans); border-radius: 999px; border: 1px solid var(--line); background: #2a211a; color: var(--ink); padding: 11px 18px; }
+    button { cursor: pointer; background: linear-gradient(180deg, #fffaf3, #e7d6bf); color: #15100c; border: 0; }
+    button.ghost { background: #2a211a; color: var(--ink); border: 1px solid var(--line); }
+    input { border-radius: 12px; min-width: 0; flex: 1; }
+    .qr { background: #fff; border-radius: 12px; padding: 10px; width: 176px; height: 176px; }
+    .qr canvas { width: 100%; height: 100%; image-rendering: pixelated; }
+    .note { color: var(--soft); font-size: 13px; margin-top: 10px; }
+    ol { margin: 0; padding-left: 20px; color: var(--soft); } ol li { margin: 6px 0; } ol b { color: var(--ink); font-weight: 600; }
+    #toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: #2a211a; border: 1px solid var(--line); padding: 12px 20px; border-radius: 999px; opacity: 0; transition: opacity .4s; }
+    #toast.on { opacity: 1; }
+    @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <header><div><div class="kicker">Syntra</div><h1>Staff</h1></div></header>
+
+  <div class="grid">
+    <div class="card stat" id="sServer"><span class="dot"></span><small>Server</small><b>Checking…</b></div>
+    <div class="card stat" id="sPrinter"><span class="dot"></span><small>Receipt printer</small><b>—</b></div>
+    <div class="card stat" id="sQuest"><span class="dot"></span><small>Meta Quest</small><b>—</b></div>
+    <div class="card stat" id="sVr"><span class="dot"></span><small>Now showing in VR</small><b>—</b></div>
+  </div>
+
+  <section class="two">
+    <div class="card">
+      <h2>Meta Quest — type this in the Quest browser</h2>
+      <div class="link" id="questUrl">…</div>
+      <p class="note">Then tap Advanced → Proceed, and Enter VR. The address changes if the Mac joins another network: always read it here.</p>
+      <h2 style="margin-top:22px">Phones — the AR page</h2>
+      <div class="link" id="arUrl">…</div>
+      <p class="note">Phones must be on the same Wi-Fi as this Mac (<b id="netNote">this Mac's network</b>). Print a Wi-Fi card below and place it at the kiosk.</p>
+    </div>
+    <div class="card">
+      <h2>Test on a phone</h2>
+      <div class="row" style="margin-top:0">
+        <div class="qr" id="testQr"></div>
+        <div style="flex:1;min-width:160px">
+          <select id="perfumeSel" style="width:100%"></select>
+          <p class="note">Scan with a phone on the same Wi-Fi: it opens this perfume's AR. Then point the phone at a printed receipt (print a test one here).</p>
+          <button id="printTest">Print a test receipt</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="card">
+      <h2>Wi-Fi card for visitors</h2>
+      <p class="note" style="margin-top:0">Visitors' phones need to join this Wi-Fi to open the AR. Enter the network the Mac is on; the printer makes a small card with a "join Wi-Fi" QR code to stand at the kiosk.</p>
+      <div class="row"><input id="ssid" placeholder="Wi-Fi name"><input id="pass" placeholder="Password" type="text"></div>
+      <div class="row"><button id="printWifi">Print Wi-Fi card</button><span class="note" id="wifiSaved"></span></div>
+    </div>
+    <div class="card">
+      <h2>Before visitors arrive</h2>
+      <ol>
+        <li><b>Start Syntra</b> on the Desktop (kiosk opens full-screen).</li>
+        <li>Plug in the ESP32. First time on this Mac: press <b>J</b> and choose <b>CP2102</b>; then press <b>K</b> to calibrate the knob.</li>
+        <li>Printer on, paper in. <b>Print a test receipt</b> here.</li>
+        <li>Quest: open the address above, <b>Enter VR</b>, check a double-press shows the perfume.</li>
+        <li>Phone on the same Wi-Fi: scan the test receipt, the scene should grow out of it.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+<div id="toast"></div>
+
+<script type="module">
+  import qrcode from './vendor/qrcode.mjs';
+  import { receiptCanvas, toBits, RECEIPT_W } from './receipt.js';
+  const $ = s => document.querySelector(s);
+  const toast = t => { $('#toast').textContent = t; $('#toast').classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => $('#toast').classList.remove('on'), 4000); };
+  const set = (id, cls, text, sub) => { const el = $(id); el.className = 'card stat ' + cls; el.querySelector('b').textContent = text; if (sub !== undefined) el.querySelector('small').textContent = sub; };
+  const data = await (await fetch('assets/ar/perfumes.json')).json();
+  const dominant = p => Object.entries(p.mood).sort((a, b) => b[1] - a[1])[0][0];
+  data.perfumes.forEach(p => $('#perfumeSel').add(new Option(`${p.name}${data.perfumes.filter(q => q.name === p.name).length > 1 ? ' — ' + p.line.split('—')[0].trim() : ''}`, p.id)));
+  let info = null;
+
+  function drawQr(el, text, px = 5) {
+    const q = qrcode(0, 'M'); q.addData(text); q.make();
+    const n = q.getModuleCount(), c = document.createElement('canvas'); c.width = c.height = n * px;
+    const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.fillStyle = '#000';
+    for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) g.fillRect(k * px, r * px, px, px);
+    el.replaceChildren(c); return c;
+  }
+  const site = () => info.publicUrl || `https://${info.ip}:${info.httpsPort}`;
+  const arLink = id => `${site()}/ar.html?p=${id}&m=${dominant(data.perfumes.find(p => p.id === id))}`;
+
+  async function refresh() {
+    try {
+      info = await (await fetch('/api/info', { cache: 'no-store' })).json();
+      set('#sServer', 'ok', 'Running', 'Server');
+      set('#sPrinter', info.printer ? 'ok' : 'warn', info.printer ? info.printer.replace(/_/g, ' ') : 'Not found — receipts are saved as pictures');
+      const q = info.questSeen;
+      set('#sQuest', q !== null && q < 10 ? 'ok' : 'warn', q === null ? 'Not connected yet' : q < 10 ? 'Connected' : `Last seen ${q}s ago`);
+      set('#sVr', info.vr === 'vr' ? 'ok' : '', info.vr === 'vr' ? (info.perfume || 'A perfume') : 'Lobby (waiting)');
+      $('#questUrl').textContent = `${site()}/vr.html`;
+      $('#arUrl').textContent = `${site()}/ar.html`;
+      $('#netNote').textContent = `address ${info.ip}`;
+      if (!refresh.qr || refresh.qr !== arLink($('#perfumeSel').value)) { refresh.qr = arLink($('#perfumeSel').value); drawQr($('#testQr'), refresh.qr); }
+    } catch {
+      set('#sServer', 'bad', 'Not running — double-click Start Syntra');
+    }
+  }
+  $('#perfumeSel').addEventListener('change', () => { refresh.qr = null; refresh(); });
+  refresh(); setInterval(refresh, 3000);
+
+  async function print(canvas, label) {
+    const bits = toBits(canvas);
+    let s = ''; for (let i = 0; i < bits.bytes.length; i += 0x8000) s += String.fromCharCode(...bits.bytes.subarray(i, i + 0x8000));
+    try {
+      const r = await (await fetch('/api/print', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ width: bits.width, height: bits.height, bytesPerRow: bits.bytesPerRow, bits: btoa(s) }) })).json();
+      toast(r.printed ? `${label} printed` : `${label}: ${r.message || 'not printed'}${r.saved ? ' — saved as ' + r.saved : ''}`);
+    } catch { toast('The server is not running'); }
+  }
+  $('#printTest').addEventListener('click', async () => {
+    if (!info) return;
+    const p = data.perfumes.find(q => q.id === $('#perfumeSel').value);
+    await print(await receiptCanvas({ perfume: p, moodKey: dominant(p), choices: { expression: 'Unisex', occasion: 'Everyday', hours: 8 }, url: arLink(p.id) }), 'Test receipt');
+  });
+
+  // Wi-Fi card: a "join this network" QR code (the standard WIFI: format phones understand)
+  try { const w = JSON.parse(localStorage.getItem('syntra.wifi') || '{}'); $('#ssid').value = w.ssid || ''; $('#pass').value = w.pass || ''; } catch {}
+  $('#printWifi').addEventListener('click', async () => {
+    const ssid = $('#ssid').value.trim(), pass = $('#pass').value;
+    if (!ssid) { toast('Enter the Wi-Fi name first'); return; }
+    try { localStorage.setItem('syntra.wifi', JSON.stringify({ ssid, pass })); } catch {}
+    const esc = v => v.replace(/([\\;,:"])/g, '\\$1');
+    const qc = document.createElement('div'); const q = drawQr(qc, `WIFI:T:${pass ? 'WPA' : 'nopass'};S:${esc(ssid)};${pass ? `P:${esc(pass)};` : ''};`, 6);
+    await document.fonts.ready;
+    const W = RECEIPT_W, c = document.createElement('canvas'); c.width = W; c.height = 620;
+    const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, W, c.height); g.fillStyle = '#000'; g.textAlign = 'center';
+    const T = (t, f, y, sp = '0px') => { g.font = f; g.letterSpacing = sp; g.fillText(t, W / 2, y); g.letterSpacing = '0px'; };
+    T('SYNTRA', "800 26px 'Manrope', sans-serif", 44, '12px');
+    T('See your scent come alive', "italic 30px 'Instrument Serif', Georgia, serif", 92);
+    T('1  Join our Wi-Fi', "700 18px 'Manrope', sans-serif", 136);
+    g.drawImage(q, (W - 250) / 2, 156, 250, 250);
+    T(ssid, "700 20px 'Manrope', sans-serif", 440);
+    if (pass) T(`Password: ${pass}`, "500 17px 'Manrope', sans-serif", 468);
+    T('2  Scan the code on your receipt', "700 18px 'Manrope', sans-serif", 520);
+    T('and point your phone at the drawing', "500 16px 'Manrope', sans-serif", 546);
+    await print(c, 'Wi-Fi card');
+  });
+</script>
+</body>
+</html>

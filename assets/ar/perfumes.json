@@ -1,0 +1,781 @@
+{
+ "moods": {
+  "fresh": {
+   "name": "Fresh",
+   "tint": [
+    206,
+    228,
+    222
+   ],
+   "light": [
+    255,
+    253,
+    244
+   ],
+   "mist": [
+    255,
+    255,
+    255
+   ]
+  },
+  "playful": {
+   "name": "Playful",
+   "tint": [
+    255,
+    206,
+    178
+   ],
+   "light": [
+    255,
+    238,
+    214
+   ],
+   "mist": [
+    255,
+    244,
+    236
+   ]
+  },
+  "romantic": {
+   "name": "Romantic",
+   "tint": [
+    242,
+    190,
+    196
+   ],
+   "light": [
+    255,
+    226,
+    224
+   ],
+   "mist": [
+    255,
+    238,
+    240
+   ]
+  },
+  "warm": {
+   "name": "Warm",
+   "tint": [
+    236,
+    172,
+    96
+   ],
+   "light": [
+    255,
+    206,
+    140
+   ],
+   "mist": [
+    255,
+    232,
+    200
+   ]
+  },
+  "bold": {
+   "name": "Bold",
+   "tint": [
+    186,
+    100,
+    60
+   ],
+   "light": [
+    255,
+    186,
+    120
+   ],
+   "mist": [
+    255,
+    222,
+    196
+   ]
+  },
+  "mysterious": {
+   "name": "Mysterious",
+   "tint": [
+    70,
+    62,
+    84
+   ],
+   "light": [
+    196,
+    186,
+    214
+   ],
+   "mist": [
+    224,
+    218,
+    232
+   ]
+  }
+ },
+ "perfumes": [
+  {
+   "id": "tobacco-rich-addictive",
+   "name": "Tobacco Collection",
+   "line": "Rich · Warm · Addictive — Eau de Parfum",
+   "image": "assets/perfumes/tobacco-rich-addictive.webp",
+   "mood": {
+    "warm": 1,
+    "bold": 0.55,
+    "mysterious": 0.35
+   },
+   "longevity": 10,
+   "occasion": [
+    "evening",
+    "everyday"
+   ],
+   "top": [
+    "Bergamot",
+    "Cardamom",
+    "Pepper"
+   ],
+   "heart": [
+    "Tobacco",
+    "Honey",
+    "Cinnamon"
+   ],
+   "base": [
+    "Amber",
+    "Sandalwood",
+    "Tonka"
+   ],
+   "character": [
+    "Warm",
+    "Woody",
+    "Refined"
+   ]
+  },
+  {
+   "id": "tobacco-intense-dark",
+   "name": "Tobacco Collection",
+   "line": "Intense · Dark · Exclusive — Eau de Parfum",
+   "image": "assets/perfumes/tobacco-intense-dark.webp",
+   "mood": {
+    "mysterious": 1,
+    "bold": 0.85
+   },
+   "longevity": 12,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Rum",
+    "Saffron",
+    "Pink Pepper"
+   ],
+   "heart": [
+    "Tobacco Leaf",
+    "Leather",
+    "Labdanum"
+   ],
+   "base": [
+    "Oud",
+    "Patchouli",
+    "Vanilla"
+   ],
+   "character": [
+    "Dark",
+    "Smoky",
+    "Opulent"
+   ]
+  },
+  {
+   "id": "amber-fusion",
+   "name": "Amber Fusion",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/amber-fusion.webp",
+   "mood": {
+    "warm": 1,
+    "romantic": 0.55
+   },
+   "longevity": 8,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Bergamot",
+    "Pink Pepper",
+    "Mandarin"
+   ],
+   "heart": [
+    "Amber",
+    "Jasmine",
+    "Orange Blossom"
+   ],
+   "base": [
+    "Vanilla",
+    "Benzoin",
+    "Musk"
+   ],
+   "character": [
+    "Warm",
+    "Ambery",
+    "Sensual"
+   ]
+  },
+  {
+   "id": "apple-juice",
+   "name": "Applejuice",
+   "line": "Day Collection — Eau de Toilette",
+   "image": "assets/perfumes/apple-juice.webp",
+   "mood": {
+    "fresh": 0.9,
+    "playful": 1
+   },
+   "longevity": 4,
+   "occasion": [
+    "everyday"
+   ],
+   "top": [
+    "Green Apple",
+    "Pear",
+    "Bergamot"
+   ],
+   "heart": [
+    "Freesia",
+    "Jasmine",
+    "Peony"
+   ],
+   "base": [
+    "White Musk",
+    "Cedarwood",
+    "Amber"
+   ],
+   "character": [
+    "Crisp",
+    "Fruity",
+    "Radiant"
+   ]
+  },
+  {
+   "id": "ebony-wood",
+   "name": "Ebony Wood",
+   "line": "Zara Emotions — Eau de Parfum",
+   "image": "assets/perfumes/ebony-wood.webp",
+   "mood": {
+    "mysterious": 0.95,
+    "bold": 0.7,
+    "warm": 0.3
+   },
+   "longevity": 11,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Black Pepper",
+    "Bergamot",
+    "Cardamom"
+   ],
+   "heart": [
+    "Ebony Wood",
+    "Incense",
+    "Patchouli"
+   ],
+   "base": [
+    "Oud",
+    "Leather",
+    "Vetiver"
+   ],
+   "character": [
+    "Smoky",
+    "Woody",
+    "Intense"
+   ]
+  },
+  {
+   "id": "femme",
+   "name": "Femme",
+   "line": "Night Collection — Eau de Parfum",
+   "image": "assets/perfumes/femme.webp",
+   "mood": {
+    "romantic": 1,
+    "playful": 0.5,
+    "fresh": 0.3
+   },
+   "longevity": 6,
+   "occasion": [
+    "everyday",
+    "special"
+   ],
+   "top": [
+    "Pink Pepper",
+    "Mandarin",
+    "Pear"
+   ],
+   "heart": [
+    "Tuberose",
+    "Jasmine",
+    "Peony"
+   ],
+   "base": [
+    "White Musk",
+    "Vanilla",
+    "Cedarwood"
+   ],
+   "character": [
+    "Floral",
+    "Soft",
+    "Radiant"
+   ]
+  },
+  {
+   "id": "nuit",
+   "name": "Nuit",
+   "line": "Night Collection — Eau de Parfum",
+   "image": "assets/perfumes/nuit.webp",
+   "mood": {
+    "mysterious": 1,
+    "romantic": 0.6,
+    "warm": 0.5
+   },
+   "longevity": 8,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Blackcurrant",
+    "Pink Pepper",
+    "Bergamot"
+   ],
+   "heart": [
+    "Orange Blossom",
+    "Jasmine",
+    "Tuberose"
+   ],
+   "base": [
+    "Vanilla",
+    "Tonka",
+    "Patchouli"
+   ],
+   "character": [
+    "Sensual",
+    "Nocturnal",
+    "Velvety"
+   ]
+  },
+  {
+   "id": "gardenia",
+   "name": "Gardenia",
+   "line": "Bloom Collection — Eau de Parfum",
+   "image": "assets/perfumes/gardenia.webp",
+   "mood": {
+    "romantic": 1,
+    "fresh": 0.5
+   },
+   "longevity": 6,
+   "occasion": [
+    "everyday",
+    "special"
+   ],
+   "top": [
+    "Pear",
+    "Mandarin",
+    "Neroli"
+   ],
+   "heart": [
+    "Gardenia",
+    "Jasmine",
+    "Tuberose"
+   ],
+   "base": [
+    "White Musk",
+    "Sandalwood",
+    "Vanilla"
+   ],
+   "character": [
+    "Floral",
+    "Creamy",
+    "Luminous"
+   ]
+  },
+  {
+   "id": "hypnotic-vanilla",
+   "name": "Hypnotic Vanilla",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/hypnotic-vanilla.webp",
+   "mood": {
+    "warm": 0.95,
+    "mysterious": 0.6,
+    "romantic": 0.4
+   },
+   "longevity": 9,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Almond",
+    "Bergamot",
+    "Pink Pepper"
+   ],
+   "heart": [
+    "Vanilla Orchid",
+    "Heliotrope",
+    "Tonka"
+   ],
+   "base": [
+    "Vanilla",
+    "Benzoin",
+    "Sandalwood"
+   ],
+   "character": [
+    "Gourmand",
+    "Velvety",
+    "Hypnotic"
+   ]
+  },
+  {
+   "id": "man-blue-spirit",
+   "name": "Man Blue Spirit",
+   "line": "Eau de Toilette",
+   "image": "assets/perfumes/man-blue-spirit.webp",
+   "mood": {
+    "fresh": 1,
+    "bold": 0.6,
+    "playful": 0.3
+   },
+   "longevity": 6,
+   "occasion": [
+    "everyday"
+   ],
+   "top": [
+    "Grapefruit",
+    "Mint",
+    "Bergamot"
+   ],
+   "heart": [
+    "Lavender",
+    "Geranium",
+    "Sea Notes"
+   ],
+   "base": [
+    "Vetiver",
+    "Cedarwood",
+    "Musk"
+   ],
+   "character": [
+    "Aquatic",
+    "Fresh",
+    "Energetic"
+   ]
+  },
+  {
+   "id": "man-gold",
+   "name": "Man Gold",
+   "line": "Eau de Toilette",
+   "image": "assets/perfumes/man-gold.webp",
+   "mood": {
+    "warm": 0.85,
+    "bold": 0.85
+   },
+   "longevity": 8,
+   "occasion": [
+    "everyday",
+    "evening"
+   ],
+   "top": [
+    "Cardamom",
+    "Bergamot",
+    "Black Pepper"
+   ],
+   "heart": [
+    "Lavender",
+    "Cinnamon",
+    "Iris"
+   ],
+   "base": [
+    "Amber",
+    "Tonka",
+    "Vetiver"
+   ],
+   "character": [
+    "Spiced",
+    "Ambery",
+    "Assured"
+   ]
+  },
+  {
+   "id": "man-silver",
+   "name": "Man Silver",
+   "line": "Eau de Toilette",
+   "image": "assets/perfumes/man-silver.webp",
+   "mood": {
+    "fresh": 1,
+    "bold": 0.3
+   },
+   "longevity": 5,
+   "occasion": [
+    "everyday"
+   ],
+   "top": [
+    "Lemon",
+    "Bergamot",
+    "Aldehydes"
+   ],
+   "heart": [
+    "Lavender",
+    "Violet Leaf",
+    "Sage"
+   ],
+   "base": [
+    "Cedarwood",
+    "Ambroxan",
+    "Musk"
+   ],
+   "character": [
+    "Clean",
+    "Aromatic",
+    "Polished"
+   ]
+  },
+  {
+   "id": "orchid",
+   "name": "Orchid",
+   "line": "Bloom Collection — Eau de Parfum",
+   "image": "assets/perfumes/orchid.webp",
+   "mood": {
+    "romantic": 0.9,
+    "playful": 0.8
+   },
+   "longevity": 7,
+   "occasion": [
+    "special",
+    "evening"
+   ],
+   "top": [
+    "Pear",
+    "Pink Pepper",
+    "Blackcurrant"
+   ],
+   "heart": [
+    "Orchid",
+    "Peony",
+    "Rose"
+   ],
+   "base": [
+    "Patchouli",
+    "Vanilla",
+    "Musk"
+   ],
+   "character": [
+    "Floral",
+    "Velvety",
+    "Chic"
+   ]
+  },
+  {
+   "id": "red-temptation-tobacco",
+   "name": "Red Temptation & Tobacco",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/red-temptation-tobacco.webp",
+   "mood": {
+    "bold": 1,
+    "warm": 0.7
+   },
+   "longevity": 10,
+   "occasion": [
+    "evening",
+    "special"
+   ],
+   "top": [
+    "Saffron",
+    "Bitter Orange",
+    "Pink Pepper"
+   ],
+   "heart": [
+    "Tobacco Leaf",
+    "Jasmine",
+    "Amberwood"
+   ],
+   "base": [
+    "Vanilla",
+    "Tonka",
+    "Cedarwood"
+   ],
+   "character": [
+    "Rich",
+    "Spiced",
+    "Magnetic"
+   ]
+  },
+  {
+   "id": "red-temptation",
+   "name": "Red Temptation",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/red-temptation.webp",
+   "mood": {
+    "warm": 0.8,
+    "mysterious": 0.75,
+    "romantic": 0.45
+   },
+   "longevity": 10,
+   "occasion": [
+    "special",
+    "evening"
+   ],
+   "top": [
+    "Saffron",
+    "Bitter Orange",
+    "Jasmine"
+   ],
+   "heart": [
+    "Amberwood",
+    "Ambergris"
+   ],
+   "base": [
+    "Cedarwood",
+    "Fir Resin",
+    "Musk"
+   ],
+   "character": [
+    "Ambery",
+    "Luminous",
+    "Addictive"
+   ]
+  },
+  {
+   "id": "rose-gourmand",
+   "name": "Rose Gourmand",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/rose-gourmand.webp",
+   "mood": {
+    "playful": 1,
+    "romantic": 0.6
+   },
+   "longevity": 7,
+   "occasion": [
+    "everyday",
+    "special"
+   ],
+   "top": [
+    "Raspberry",
+    "Pink Pepper",
+    "Bergamot"
+   ],
+   "heart": [
+    "Rose",
+    "Praline",
+    "Peony"
+   ],
+   "base": [
+    "Vanilla",
+    "Caramel",
+    "Musk"
+   ],
+   "character": [
+    "Sweet",
+    "Rosy",
+    "Playful"
+   ]
+  },
+  {
+   "id": "vibrant-leather",
+   "name": "Vibrant Leather",
+   "line": "Eau de Parfum",
+   "image": "assets/perfumes/vibrant-leather.webp",
+   "mood": {
+    "bold": 1,
+    "fresh": 0.35
+   },
+   "longevity": 9,
+   "occasion": [
+    "everyday",
+    "evening"
+   ],
+   "top": [
+    "Bergamot",
+    "Cardamom",
+    "Pink Pepper"
+   ],
+   "heart": [
+    "Leather",
+    "Iris",
+    "Lavender"
+   ],
+   "base": [
+    "Suede",
+    "Cedarwood",
+    "Amber"
+   ],
+   "character": [
+    "Leathery",
+    "Confident",
+    "Modern"
+   ]
+  },
+  {
+   "id": "waterlily-tea-dress",
+   "name": "Waterlily Tea Dress",
+   "line": "Zara Emotions — Eau de Parfum",
+   "image": "assets/perfumes/waterlily-tea-dress.webp",
+   "mood": {
+    "fresh": 1,
+    "romantic": 0.45
+   },
+   "longevity": 5,
+   "occasion": [
+    "everyday"
+   ],
+   "top": [
+    "Green Tea",
+    "Bergamot",
+    "Pear"
+   ],
+   "heart": [
+    "Water Lily",
+    "Jasmine",
+    "Lotus"
+   ],
+   "base": [
+    "White Musk",
+    "Cedarwood",
+    "Ambrette"
+   ],
+   "character": [
+    "Aquatic",
+    "Floral",
+    "Serene"
+   ]
+  },
+  {
+   "id": "wonder-rose",
+   "name": "Wonder Rose",
+   "line": "Day Collection — Eau de Toilette",
+   "image": "assets/perfumes/wonder-rose.webp",
+   "mood": {
+    "fresh": 0.95,
+    "romantic": 0.8,
+    "playful": 0.3
+   },
+   "longevity": 4,
+   "occasion": [
+    "everyday"
+   ],
+   "top": [
+    "Blackcurrant",
+    "Bergamot",
+    "Mandarin"
+   ],
+   "heart": [
+    "Rose",
+    "Jasmine",
+    "Peony"
+   ],
+   "base": [
+    "Musk",
+    "Sandalwood",
+    "Amber"
+   ],
+   "character": [
+    "Rosy",
+    "Fresh",
+    "Graceful"
+   ]
+  }
+ ]
+}

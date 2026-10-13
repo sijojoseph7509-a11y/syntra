@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntra</title>
+  <meta name="description" content="An interactive perfume-discovery installation. Touch the controls, watch the world change, and let the possibilities collapse into one scent.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1790539739">
+</head>
+<body data-state="boot">
+
+<main id="stage" aria-live="polite">
+
+  <!-- ─────────────── THE WORLD (moves with the camera) ─────────────── -->
+  <div id="world">
+    <div id="bg" class="layer">
+      <img class="bg-sharp" src="assets/bg.jpg" alt="">
+      <img class="bg-soft"  src="assets/bg-blur.jpg" alt="">
+    </div>
+
+    <!-- Intro headline lives inside the world so the bottle cap overlaps it -->
+    <div id="introTitle" class="intro-title" aria-hidden="true">
+      <span class="line"><span>Find your perfume</span></span>
+    </div>
+
+    <div id="rig">
+      <div class="contact-shadow"></div>
+      <img id="bottle" src="assets/bottle.webp" alt="Zara perfume bottle">
+      <div id="liquid"></div>
+      <div id="sheen"></div>
+    </div>
+    <img id="cap" src="assets/cap.webp" alt="">
+  </div>
+
+  <!-- Light / colour grading that the physical controls drive -->
+  <div id="grade" class="layer">
+    <div class="tint"></div>
+    <div class="shade"></div>
+    <div class="vignette"></div>
+    <div class="scrim"></div>
+  </div>
+
+  <!-- ─────────────── RESULT (campaign layout) ─────────────── -->
+  <section id="result" aria-label="Your perfume">
+    <header class="res-head">
+      <i class="logo"></i>
+      <h2 id="resName" class="res-name">Aurum</h2>
+      <p id="resSub" class="res-sub">Eau de Parfum</p>
+    </header>
+
+    <div class="res-band glass">
+      <div class="res-col res-notes">
+        <h3 class="serif-label">Notes</h3>
+        <dl class="res-table">
+          <div><dt>Top</dt><dd id="resTop"></dd></div>
+          <div><dt>Heart</dt><dd id="resHeart"></dd></div>
+          <div><dt>Base</dt><dd id="resBase"></dd></div>
+        </dl>
+      </div>
+      <div class="res-col res-facts">
+        <h3 class="serif-label">Profile</h3>
+        <dl class="res-table">
+          <div><dt>Longevity</dt><dd id="resLong"></dd></div>
+          <div><dt>Mood</dt><dd id="resMood"></dd></div>
+          <div><dt>Occasion</dt><dd id="resOcc"></dd></div>
+          <div><dt>MRP</dt><dd id="resMrp" class="serif-value"></dd></div>
+        </dl>
+      </div>
+      <div class="res-alts" id="resAlts" aria-hidden="true"></div>
+    </div>
+
+    <figure class="res-bottle-wrap">
+      <div class="res-shadow"></div>
+      <img id="resBottle" alt="">
+    </figure>
+
+    <p id="resChar" class="pill pill-light res-pill"></p>
+    <p class="vr-hint">Double-press for VR&ensp;·&ensp;Hold the button to print your scent</p>
+    <p id="resMatch" class="res-match"></p>
+
+    <nav class="res-actions">
+      <button id="btnAgain" class="text-btn"><span class="ico">↺</span> Try again</button>
+      <button id="btnExplore" class="text-btn">Explore perfume <span class="ico">→</span></button>
+    </nav>
+  </section>
+
+  <!-- Receipt: hold ring + the paper coming out of the printer -->
+  <div id="printHold" class="print-hold" aria-hidden="true">
+    <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" class="track"/><circle cx="32" cy="32" r="28" class="fill" id="printHoldRing"/></svg>
+    <span>Keep holding to print your scent</span>
+  </div>
+  <div id="printSheet" class="print-sheet" aria-live="polite">
+    <div class="print-slot"><div class="print-paper" id="printPaper"></div></div>
+    <p class="print-msg" id="printMsg">Printing your scent</p>
+    <p class="print-sub" id="printSub">Scan the code on your receipt, then point your phone at the drawing</p>
+  </div>
+
+  <!-- Particle canvas: ambient motes, spray, possibilities, convergence -->
+  <canvas id="fx" class="layer"></canvas>
+
+  <!-- ─────────────── COPY ─────────────── -->
+  <section id="copyIntro" class="copy">
+    <i class="logo"></i>
+    <p class="lede">A scent waiting to<br>be discovered.</p>
+    <p class="pill pill-light enter-pill"><span>Press Enter</span></p>
+  </section>
+
+  <section id="copyDiscover" class="copy">
+    <i class="logo"></i>
+    <h1 class="display"><span class="line"><span>Discover</span></span><span class="line"><span>your scent</span></span></h1>
+    <p class="lede">Adjust the sliders and knob<br>to set your preferences.</p>
+    <p id="caption" class="caption"><span class="k"></span><span class="v"></span></p>
+    <button id="plugBtn" class="eye-btn plug-btn" type="button" aria-label="Connect Arduino (J)" aria-pressed="false" title="Connect Arduino: click or press J">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2.5v5M15 2.5v5"/><path d="M6.5 7.5h11v3.5a5.5 5.5 0 0 1-11 0z"/><path d="M12 16.5v5"/></svg>
+    </button>
+    <button id="eyeBtn" class="eye-btn" type="button" aria-label="Show physical controls" aria-pressed="false">
+      <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12S5.5 4.8 12 4.8 22.5 12 22.5 12 18.5 19.2 12 19.2 1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3.2"/></svg>
+      <svg class="eye-shut" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12S5.5 4.8 12 4.8 22.5 12 22.5 12 18.5 19.2 12 19.2 1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3.2"/><path d="M3.5 3.5l17 17"/></svg>
+    </button>
+  </section>
+
+  <iframe id="vrFrame" class="vr-frame" title="VR preview" src="about:blank" allow="autoplay; xr-spatial-tracking"></iframe>
+  <p id="vrNote" class="pill pill-dark vr-note"><span class="vr-dot"></span>Now in VR — put on the headset <span class="sep">·</span> press the button to finish</p>
+  <p id="plugNote" class="plug-note" aria-live="polite"></p>
+
+  <p id="statusPill" class="pill pill-dark status-pill"><span id="statusText">Finding your scent…</span></p>
+
+  <!-- Physical controls (small section) -->
+  <aside id="hud" aria-label="Physical controls"></aside>
+
+  <div id="grain" class="layer"></div>
+  <div id="curtain" class="layer"></div>
+
+  <!-- Developer bar: press ` (backtick) -->
+  <div id="devbar" class="glass" hidden>
+    <div class="dev-row">
+      <strong>Input</strong>
+      <button id="devMode" class="dev-btn">Simulation</button>
+      <button id="devConnect" class="dev-btn">Connect Arduino</button>
+      <span id="devStatus" class="dev-status">Not connected</span>
+    </div>
+    <div class="dev-row mono" id="devLine">—</div>
+    <div class="dev-row keys">
+      <span><kbd>Q</kbd><kbd>A</kbd> Mood knob</span>
+      <span><kbd>W</kbd><kbd>S</kbd> Slider 1 · Longevity</span>
+      <span><kbd>E</kbd><kbd>D</kbd> Slider 2 · Expression</span>
+      <span><kbd>R</kbd><kbd>F</kbd> Slider 3 · Occasion</span>
+      <span><kbd>Enter</kbd> Button</span>
+      <span><kbd>Esc</kbd> / hold button 2 s · Reset</span>
+      <span><kbd>M</kbd> Sound</span>
+      <span><kbd>H</kbd> Controls panel</span>
+      <span><kbd>J</kbd> Connect / disconnect Arduino</span>
+      <span>Double-click · Fullscreen</span>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="receipt.js"></script>
+<script src="script.js?v=1790539739"></script>
+</body>
+</html>

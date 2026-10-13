@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntra — VR</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #f6eee3; --soft: rgba(246, 238, 227, .66); }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0e0a07; color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; }
+    #view, #view canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    .panel {
+      position: fixed; left: 50%; bottom: 7vh; transform: translateX(-50%);
+      width: min(92vw, 560px); padding: 26px 28px 24px;
+      border-radius: 22px; text-align: center;
+      background: rgba(20, 14, 10, .55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .16);
+    }
+    h1 { margin: 0; font: 400 44px/1 'Instrument Serif', Georgia, serif; letter-spacing: -.01em; text-transform: uppercase; }
+    p { margin: 10px 0 0; color: var(--soft); font-size: 15px; line-height: 1.45; }
+    #enterVR {
+      margin-top: 20px; padding: 16px 44px; border-radius: 999px; border: 0; cursor: pointer;
+      font: 600 17px/1 'Manrope', sans-serif; letter-spacing: .06em; text-transform: uppercase;
+      color: #120d09; background: linear-gradient(180deg, #fffaf3, #e9d9c4);
+      box-shadow: 0 14px 40px -14px rgba(0, 0, 0, .6);
+    }
+    #enterVR:disabled { opacity: .45; cursor: default; }
+    .status { margin-top: 16px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--soft); display: inline-flex; gap: 8px; align-items: center; }
+    .status i { width: 8px; height: 8px; border-radius: 50%; background: #b44; }
+    .status.ok i { background: #6f9a6a; box-shadow: 0 0 0 3px rgba(111, 154, 106, .25); }
+    body.in-vr .panel { display: none; }
+    body.preview .panel { display: none; }
+    .drag-hint { position: fixed; left: 50%; bottom: 4vh; transform: translateX(-50%); display: none;
+      font: 600 11px/1 'Manrope', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(246,238,227,.8);
+      padding: 10px 16px; border-radius: 999px; background: rgba(20,14,10,.45); backdrop-filter: blur(10px);
+      animation: hint 6s ease forwards; pointer-events: none; }
+    body.preview .drag-hint { display: block; }
+    @keyframes hint { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <div id="view"></div>
+  <p class="drag-hint">Drag to look around</p>
+
+  <section class="panel">
+    <h1>Syntra · VR</h1>
+    <p id="help">Tap <b>anywhere</b> to enter VR. After a visitor leaves VR, this page resets by itself: just tap again for the next person.</p>
+    <button id="enterVR" type="button" disabled>Enter VR</button><br>
+    <span id="link" class="status"><i></i><span>Connecting to kiosk…</span></span>
+  </section>
+
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
+  <script type="module" src="vr.js?v=lite1"></script>
+</body>
+</html>
